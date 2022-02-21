@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/Template-U3C4/styles/main.css">
+  </head>
+
+  <body>
+    <div id="main">
+      <!--No need to add sidebar here, directly display search results here only-->
+
+      <!-- show headline, description and image -->
+    </div>
+  </body>
+</html>
+<script type = "module">
+
+
+import { apiCall, appendArticles } from "/Template-U3C4/scripts/main.js"
+
+let search_item = localStorage.getItem("search_term")
+
+let url =`https://shrouded-earth-23381.herokuapp.com/api/search/?q=${search_item}`
+let res = await apiCall(url);
+console.log("res cricket",res);
+
+let maindiv = document.getElementById("main");
+if(search_item=="cricket" || search_item=="Cricket" ){
+  appendArticles(res,maindiv)
+}
+else{
+maindiv.textContent = "Sorry page not found"
+}
+
+</script>
